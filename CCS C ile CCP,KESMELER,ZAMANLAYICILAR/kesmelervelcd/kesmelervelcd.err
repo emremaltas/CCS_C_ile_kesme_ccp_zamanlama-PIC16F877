@@ -1,0 +1,6 @@
+>>> Warning 216 "kesmelervelcd.c" Line 258(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "kesmelervelcd.c" Line 258(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "kesmelervelcd.c" Line 258(1,2): Interrupts disabled during call to prevent re-entrancy:  (goster)
+      Memory usage:   ROM=21%      RAM=9% - 18%
+      0 Errors,  3 Warnings.
+Build Successful.

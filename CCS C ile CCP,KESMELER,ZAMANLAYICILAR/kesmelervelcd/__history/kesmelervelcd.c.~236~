@@ -1,0 +1,168 @@
+#include<16f877.h>
+#use delay(clock=4000000)
+#fuses XT,NOLVP,NOBROWNOUT,NOPROTECT,NODEBUG,NOWDT
+#include<lcd.c>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#use fast_io(e)
+
+int disp[10]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};
+int birler=0,onlar=0;
+int sayac=0;
+int timer1_adet=0;
+
+
+
+
+void ilkAyar()
+{
+
+   
+   set_tris_a(0X00);
+   set_tris_b(0XF1);
+   set_tris_c(0b10000101);
+   set_tris_e(0x04);
+   
+   
+   
+   output_a(0x00);
+   output_b(0x00);
+   output_c(0x00);
+   output_e(0x00);
+   
+   lcd_init();
+  
+   setup_psp(PSP_DISABLED);
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_OFF);
+   
+
+   ext_int_edge(L_TO_H);
+   setup_ccp1(CCP_CAPTURE_DIV_4);
+   setup_timer_2(T2_DIV_BY_16,190,16);
+   setup_timer_1(T1_DIV_BY_2 | T1_EXTERNAL);
+   
+   setup_ccp2(CCP_PWM);
+   set_pwm2_duty(50);
+   
+   CCP_1_HIGH=0X00;
+   CCP_1_LOW=0X01;
+   
+   enable_interrupts(INT_TIMER2);
+   enable_interrupts(INT_EXT);
+   enable_interrupts(INT_CCP1);
+   enable_interrupts(INT_CCP2);
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
+   
+
+
+   
+   
+   
+   
+   
+}
+
+void goster()
+{
+       birler=sayac%10;
+       onlar=sayac/10;
+       
+       output_a(disp[birler] | 0b00010000);
+       delay_ms(20);
+       output_a(disp[onlar] | 0b00100000);
+       delay_ms(20);
+       
+   
+}
+
+#int_ccp1
+void ccp1_kesmesi()
+{
+   printf(lcd_putc,"\fCCP1 kesmesi yakalandi.");
+   printf(lcd_putc,"\nB1 ledi yakildi!");
+   output_high(pin_b1);
+   delay_ms(2000);
+   output_low(pin_b1);
+   printf(lcd_putc,"\fLed sonduruldu!");
+   delay_ms(500);
+   printf(lcd_putc,"\f");
+}
+
+#int_ext
+void b1_kesmesi()
+{
+   sayac++;
+  
+}
+#int_timer2
+void timer2_kesmesi()
+{
+   output_toggle(pin_b2);
+}
+
+#int_timer1
+void timer1_kesici()
+{
+   timer1_adet++;
+   
+   
+   if(timer1_adet==100000)
+   {
+       printf(lcd_putc,"T1=5\N C3 Ledi yakiliyor!");
+       output_high(pin_c3);
+       delay_ms(1000);
+       output_low(pin_c3);
+        printf(lcd_putc,"\f C3 Ledi sonduruldu!");
+       
+   }
+   else if(timer1_adet==500000)
+   {
+      output_high(pin_c4);
+      delay_ms(10000);
+      output_low(pin_c4);
+   }
+   else if(timer1_adet==305000)
+   {
+       output_high(pin_c5);
+       delay_ms(1000);
+       output_low(pin_c5);
+       
+   }
+   else if(timer1_adet==605000)
+   {
+      output_high(pin_c6);
+      delay_ms(1000);
+      output_low(pin_c6);
+      
+   }
+   else if(timer1_adet>605000)
+   {
+      timer1_adet=0;
+   }
+   
+   
+   
+}
+
+
+void main()
+{
+  ilkAyar();
+ 
+   
+    
+    while(true)
+    {
+       goster(); 
+      
+      
+      
+      
+      
+    }
+}
+
+
