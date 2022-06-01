@@ -1,5 +1,6 @@
 # CCS_C_ILE_KESME_CCP_ZAMANLAMA-PIC16F877
-Bu projede Timer1,Timer2,B0 harici kesmesi ,B4-7 değişim kesmeleri ,CCP üzerinde durulmuştur ve devre haline getirilmiştir.
+Konu tekrar projesidir.
+Bu projede Timer1,Timer2,B0 harici kesmesi ,B4-7 değişim kesmeleri ,CCP üzerinde durulmuştur ve devre haline getirilmiştir. 
 
 # Devrede Neler OLuyor?
 
