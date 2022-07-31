@@ -2,7 +2,7 @@
 
 ## Konu tekrar projesidir.
 
-# Devrede Neler OLuyor?
+# Devrede Neler Oluyor?
 
 - Sayac arttır butonuna basıldığında ***B0*** ve ***C2*** pinlerine lojik 1 girdisi verilmektedir. ***B0*** harici kesme oluşturmakta ve displaydeki değer 1 artmaktadır.
    CCP1 yani C2 pini 4 kez lojik 1 yapıldığında yakalama gerçekleştiricek şekilde ayarlanmıştır ve yakalama meydana geldiğinde ***B1*** pinindeki led yanmaktadır.
@@ -20,4 +20,6 @@ Bu yanan led ile ***B4-B7*** pinlerine kablo çekilmiştir ve ***B4-B7*** kesmel
 
 - ***C7*** pinine bağlı buton basıldığında ise tüm bu değerler sıfırlanmaktadır.Tüm bu kesmeler ve yapılan işlemler o an LCD ekranında da yazılarak bilgisi verilmiştir.
 
+# Devreye Ait Görsel
 
+![Devrenin Resmi](https://github.com/emremaltas/CCS_C_ile_kesme_ccp_zamanlama-PIC16F877/blob/main/CCS%20C%20ile%20CCP%2CKESMELER%2CZAMANLAYICILAR/DevreninResmi.png)
